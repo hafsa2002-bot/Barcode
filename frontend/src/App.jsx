@@ -1,11 +1,11 @@
 import { useState } from "react";
-const [productInfo, setProductInfo] = useState(null);
 // import { Html5Qrcode } from "html5-qrcode";
 import { Html5QrcodeSupportedFormats, Html5Qrcode } from "html5-qrcode";
 import { ScanBarcode } from "lucide-react";
 
 function App() {
   const [scannedCode, setScannedCode] = useState(null);
+  const [productInfo, setProductInfo] = useState(null);
   const [scanning, setScanning] = useState(false);
 
   const startScanner = async () => {
