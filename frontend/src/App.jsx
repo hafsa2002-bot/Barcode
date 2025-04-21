@@ -16,7 +16,7 @@ function App() {
     const config = {
       fps: 10,
       // qrbox: 250,
-      qrbox: { width: 300, height: 200 },
+      qrbox: { width: 250, height: 150 },
       formatsToSupport: [
         Html5QrcodeSupportedFormats.EAN_13,
         Html5QrcodeSupportedFormats.CODE_128,
