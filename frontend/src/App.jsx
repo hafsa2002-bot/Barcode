@@ -24,43 +24,17 @@ function App() {
         Html5QrcodeSupportedFormats.UPC_E,
       ],
     };
-/*
-    html5QrCode
-      .start(
-        { facingMode: "environment" },
-        // { facingMode: { exact: "environment" } },
-        config,
-        (decodedText, decodedResult) => {
-          // Once a barcode is detected, stop scanning
-          html5QrCode.stop().then(() => {
-            setScannedCode(decodedText);
-            setScanning(false);
-          });
-        },
-        (errorMessage) => {
-          console.log("Scanning error:", errorMessage);
-        }
-      )
-      .catch((err) => {
-        console.error("Camera error:", err);
-      });
 
-  */
   html5QrCode.start(
     { facingMode: "environment" },
-    {
-      fps: 10,
-      qrbox: { width: 300, height: 200 },
-      formatsToSupport: [
-        Html5QrcodeSupportedFormats.EAN_13,
-        Html5QrcodeSupportedFormats.UPC_A,
-      ],
-    },
+    config,
     (decodedText, decodedResult) => {
-      console.log("Scanned:", decodedText);
+      console.log("Scanned Barcode:", decodedText);
+      setScannedCode(decodedText)
+      // Do something with the decodedText (ISBN or product code)
     },
-    (error) => {
-      console.warn("Scan error:", error);
+    (errorMessage) => {
+      console.warn("Scanning error:", errorMessage);
     }
   );
 }
