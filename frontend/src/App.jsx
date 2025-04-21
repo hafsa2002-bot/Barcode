@@ -29,14 +29,25 @@ function App() {
     { facingMode: "environment" },
     config,
     (decodedText, decodedResult) => {
-      console.log("Scanned Barcode:", decodedText);
-      setScannedCode(decodedText)
-      // Do something with the decodedText (ISBN or product code)
+      html5QrCode.stop().then(() => {
+        setScannedCode(decodedText);
+        setScanning(false);
+      });
     },
     (errorMessage) => {
       console.warn("Scanning error:", errorMessage);
     }
-  );
+  ).then(() => {
+    // Set camera to normal view (not mirrored)
+    const videoElement = document.querySelector("#reader video");
+    if (videoElement) {
+      videoElement.style.transform = "scaleX(1)";
+    }
+  })
+  .catch((err) => {
+    console.error("Camera error:", err);
+    setScanning(false);
+  });
 }
 
 
