@@ -2,6 +2,7 @@ import { useState } from "react";
 // import { Html5Qrcode } from "html5-qrcode";
 import { Html5QrcodeSupportedFormats, Html5Qrcode } from "html5-qrcode";
 import { ScanBarcode } from "lucide-react";
+import Scanner from "./Scanner";
 
 function App() {
   const [scannedCode, setScannedCode] = useState(null);
@@ -81,7 +82,7 @@ const fetchProductInfo = async (barcode) => {
       )}
 
       {productInfo && (
-        <div className="mt-4 bg-gray-100 p-4 rounded">
+        <div className="text-black mt-4 bg-gray-100 p-4 rounded">
           <h2 className="font-bold text-lg">{productInfo.title}</h2>
           <p>Brand: {productInfo.brand}</p>
           {productInfo.images && productInfo.images[0] && (
@@ -89,6 +90,7 @@ const fetchProductInfo = async (barcode) => {
           )}
         </div>
       )}
+    <Scanner/>
     </div>
   )
 }
