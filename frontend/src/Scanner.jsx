@@ -33,8 +33,8 @@ function Scanner() {
           (decodedText) => {
             html5QrCode.stop().then(() => {
                 setScannedCode(decodedText);
-                // fetchProductInfo(decodedText);
-                fetchProductInfo("6111017047873");
+                fetchProductInfo(decodedText);
+                // fetchProductInfo("6111017047873");
                 setScanning(false);
                 setShouldStart(false);
             });
@@ -116,15 +116,17 @@ function Scanner() {
 
       {productInfo && (
         <div className="text-black mt-4 bg-gray-100 p-4 rounded">
-          <h2 className="font-bold text-lg">{productInfo?.product_name}</h2>
-          <p>Brand: {productInfo?.brands}</p>
-          {productInfo.images && productInfo.images[0] && (
-            <img
-              src={productInfo.image_front_url}
-              alt="product"
-              className="w-32 mt-2"
-            />
-          )}
+            <h2 className="font-bold text-lg">
+                {productInfo?.product_name || "Unnamed Product"}
+            </h2>            
+            <p>Brand: {productInfo?.brands}</p>
+            {productInfo.image_front_url && (
+                <img
+                    src={productInfo.image_front_url}
+                    alt="product"
+                    className="w-32 mt-2"
+                />
+            )}
         </div>
       )}
     </div>
