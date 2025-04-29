@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Html5QrcodeSupportedFormats, Html5Qrcode } from "html5-qrcode";
 import { ScanBarcode } from "lucide-react";
+import axios from 'axios'
 
 let html5QrCode;
 
@@ -61,22 +62,16 @@ function Scanner() {
     setShouldStart(true); // triggers useEffect
   };
 
-  const fetchProductInfo = async (barcode) => {
-    try {
-      const response = await fetch(
-        `https://api.upcitemdb.com/prod/trial/lookup?upc=${barcode}`
-      );
-      const data = await response.json();
-      if (data.items?.length > 0) {
-        setProductInfo(data.items[0]);
-      } else {
-        setProductInfo(null);
-        console.log("No product info found.");
-      }
-    } catch (error) {
-      console.error("Error fetching product info:", error);
-    }
-  };
+  const fetchProductInfo = (barcode) => {
+      axios.get(`https://world.openfoodfacts.org/api/v3/product/${barcode}`)
+          .then(response => {
+                  console.log(response.data)
+                  setProductQty(response.data.product.quantity)
+                  setProductInfo(response.data.product);
+                  console.log("nutriscore_grade: ", response.data?.nutriscore_grade)
+          })
+          .catch(error => console.log("Failed to get data from Open Food API:", error));
+  }
 
   useEffect(() => {
     return () => {
@@ -120,11 +115,11 @@ function Scanner() {
 
       {productInfo && (
         <div className="text-black mt-4 bg-gray-100 p-4 rounded">
-          <h2 className="font-bold text-lg">{productInfo.title}</h2>
-          <p>Brand: {productInfo.brand}</p>
+          <h2 className="font-bold text-lg">{productInfo?.product_name}</h2>
+          <p>Brand: {productInfo?.brands}</p>
           {productInfo.images && productInfo.images[0] && (
             <img
-              src={productInfo.images[0]}
+              src={productInfo.image_front_url}
               alt="product"
               className="w-32 mt-2"
             />
