@@ -72,7 +72,7 @@ const fetchProductInfo = async (barcode) => {
   return (
     <div>
       <button onClick={() => startScanner()}>
-        <ScanBarcode size={40} />
+        <ScanBarcode size={70} />
       </button>
 
       {scanning && <div id="reader" style={{ width: "300px" }}></div>}

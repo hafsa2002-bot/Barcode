@@ -80,7 +80,7 @@ function Scanner() {
 return (
     <div>
         <button onClick={() => startScanner()}>
-            <ScanBarcode className='text-green-300' size={40} />
+            <ScanBarcode className='text-green-300' size={70} />
         </button>
         {scanning && (
             <>
