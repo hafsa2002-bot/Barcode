@@ -5,6 +5,7 @@ import { ScanBarcode } from "lucide-react";
 import Scanner from "./Scanner";
 import NewScan from "./NewScan";
 import NewScanWithZxing from "./NewScanWithZxing";
+import Scan2 from "./Scan2";
 
 function App() {
   const [scannedCode, setScannedCode] = useState(null);
@@ -95,6 +96,7 @@ const fetchProductInfo = async (barcode) => {
     <Scanner/>
     <NewScan/>
     <NewScanWithZxing/>
+    <Scan2/>
     </div>
   )
 }
