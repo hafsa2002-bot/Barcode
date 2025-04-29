@@ -4,6 +4,7 @@ import { Html5QrcodeSupportedFormats, Html5Qrcode } from "html5-qrcode";
 import { ScanBarcode } from "lucide-react";
 import Scanner from "./Scanner";
 import NewScan from "./NewScan";
+import NewScanWithZxing from "./NewScanWithZxing";
 
 function App() {
   const [scannedCode, setScannedCode] = useState(null);
@@ -93,6 +94,7 @@ const fetchProductInfo = async (barcode) => {
       )}
     <Scanner/>
     <NewScan/>
+    <NewScanWithZxing/>
     </div>
   )
 }
