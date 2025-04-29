@@ -32,10 +32,11 @@ function Scanner() {
           config,
           (decodedText) => {
             html5QrCode.stop().then(() => {
-              setScannedCode(decodedText);
-              fetchProductInfo(decodedText);
-              setScanning(false);
-              setShouldStart(false);
+                setScannedCode(decodedText);
+                // fetchProductInfo(decodedText);
+                fetchProductInfo("6111017047873");
+                setScanning(false);
+                setShouldStart(false);
             });
           },
           (errorMessage) => {
