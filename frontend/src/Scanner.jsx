@@ -67,9 +67,10 @@ function Scanner() {
       axios.get(`https://world.openfoodfacts.org/api/v3/product/${barcode}`)
           .then(response => {
                   console.log(response.data)
-                  setProductQty(response.data.product.quantity)
-                  setProductInfo(response.data.product);
-                  console.log("nutriscore_grade: ", response.data?.nutriscore_grade)
+                //   setProductQty(response.data.product.quantity)
+                    setProductInfo(response.data.product);
+                    console.log("name: ", response.data.product?.ecoscore_data?.agribalyse?.name_fr)
+                //   console.log("nutriscore_grade: ", response.data?.nutriscore_grade)
           })
           .catch(error => console.log("Failed to get data from Open Food API:", error));
   }
@@ -81,6 +82,11 @@ function Scanner() {
       }
     };
   }, []);
+  /*
+  useEffect(() => {
+    fetchProductInfo("6111017047873")
+  }, [])
+  */
 
   return (
     <div>
@@ -117,7 +123,11 @@ function Scanner() {
       {productInfo && (
         <div className="text-black mt-4 bg-gray-100 p-4 rounded">
             <h2 className="font-bold text-lg">
-                {productInfo?.product_name || "Unnamed Product"}
+                {productInfo?.product_name ||
+                    productInfo?.product_name_fr ||
+                    productInfo.ecoscore_data?.agribalyse?.name_fr ||
+                    "Unnamed Product"
+                }            
             </h2>            
             <p>Brand: {productInfo?.brands}</p>
             {productInfo.image_front_url && (
